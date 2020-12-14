@@ -10,8 +10,8 @@ RUN npm run build
 
 
 
-FROM node:15.3.0-alpine3.10 as production-stage
-FROM keymetrics/pm2:14-alpine as production-stage
+FROM node:15.3.0-alpine3.10
+FROM keymetrics/pm2:14-alpine
 
 CMD ["mkdir", "/pmto"]
 
