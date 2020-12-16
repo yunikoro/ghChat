@@ -1,4 +1,4 @@
-FROM node:15.3.0-alpine3.10 as build-stage
+FROM node:12.20.0-alpine3.10 as build-stage
 
 WORKDIR /build
 
@@ -10,10 +10,10 @@ RUN npm run build
 
 
 
-FROM node:15.3.0-alpine3.10
+FROM node:12.20.0-alpine3.10 as production-stage
 FROM keymetrics/pm2:14-alpine
 
-CMD ["mkdir", "/pmto"]
+RUN mkdir /pmto
 
 COPY --from=build-stage /build /pmto
 

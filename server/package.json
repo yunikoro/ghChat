@@ -17,7 +17,8 @@
     "build:prod": "npm run clean-dist && webpack --config webpack.config.js --progress --colors --prod",
     "start:prod": "pm2 start ./dist/index.js --env production",
     "stop:prod": "pm2 stop ./dist/index.js --env production",
-    "start-docker:prod": "pm2-runtime start ./dist/index.js --env production"
+    "start-docker:prod": "pm2-runtime start ./dist/index.js --env production",
+    "init_sql_docker": "ts-node-dev --poll --respawn --transpileOnly ./init/index.ts "
   },
   "engines": {
     "node": ">= 0.10.0"
