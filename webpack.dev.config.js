@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const apiMocker = require('mocker-api');
 const commonConfig = require('./webpack.common.config.js');
 
 module.exports = merge(commonConfig, {
@@ -32,11 +33,14 @@ module.exports = merge(commonConfig, {
     ],
   },
   devServer: {
+    before(app) {
+      apiMocker(app, path.resolve(__dirname, './mock/index.js'));
+    },
     contentBase: path.resolve(__dirname, './src'), // 让WEB服务器运行静态资源（index.html）
-    hot: true,
+    // hot: true,
     historyApiFallback: true,
     compress: true,
-    stats: 'errors-only', // 只在发生错误时输出
+    // stats: 'errors-only', // 只在发生错误时输出
   },
   plugins: [new webpack.HotModuleReplacementPlugin(), new ProgressBarPlugin()],
 });
